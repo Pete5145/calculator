@@ -62,8 +62,7 @@
 
     <script>
         function changeStyle(element, color) {
-            element.style.backgroundColor = color;
-      
+            element.style.backgroundColor = color;      
         }
    
         let value1 = document.getElementById("value1");
@@ -76,46 +75,42 @@
         let btn5 = document.getElementById("btn5");
 
 
-        btn1.addEventListener("click", plusBtn);
-        btn2.addEventListener("click", minusBtn);
-        btn3.addEventListener("click", timesBtn);
-        btn4.addEventListener("click", divideBtn);
-        btn5.addEventListener("click", modulusBtn);
+        btn1.addEventListener("click", calculate);
+        btn2.addEventListener("click", calculate);
+        btn3.addEventListener("click", calculate);
+        btn4.addEventListener("click", calculate);
+        btn5.addEventListener("click", calculate);
 
-        function plusBtn() {
-            let input1 = value1.value;
-            let input2 = value2.value;
+        function calculate(event) {
+            let result = null;
 
-            let result = input1 - -input2;
-           
-            display.innerHTML = `The result is: ${result}`;
-    }
+            let operator = event.target.innerHTML;
 
-        function minusBtn() {
-            let input1 = value1.value;
-            let input2 = value2.value;
-            let result = input1 - input2;
-            display.innerHTML = `The result is: ${result}`;
+            let num1 = parseInt(value1.value);
+            let num2 = parseInt(value2.value);
+
+            if (operator == "+") {
+                result =  num1 + num2; 
+            } else if (operator == "-") {
+                result = num1 - num2;
+            } else if (operator == "*") {
+                result = num1 * num2;
+            } else if (operator == "/"){
+                if (num2 == 0) {
+                    result = "Cannot divide a number by zero(0)";
+                } else {
+                    result = num1 / num2;
+                }
+            } else if (operator == "%") {
+                result = num1 % num2;
+            } else {
+                result = "Invalid arithmetic operation attempted";
+            }
+
+            display.innerHTML = result;
         }
 
-        function timesBtn() {
-            let input1 = value1.value;
-            let input2 = value2.value;
-            let result = input1 * input2;
-            display.innerHTML = `The result is: ${result}`;
-        }
-        function divideBtn() {
-            let input1 = value1.value;
-            let input2 = value2.value;
-            let result = input1 / input2;
-            display.innerHTML = `The result is: ${result}`;
-        }
-        function modulusBtn() {
-            let input1 =value1.value;
-            let input2 =value2.value;
-            let result = input1 % input2;
-            display.innerHTML = `The result is: ${result}`;
-        }
+        
    </script>
 </body>
 </html>
